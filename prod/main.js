@@ -5,16 +5,16 @@ var APP_PATH;
 switch (process.env.FIREMUSEUM_APP_NAME) {
   case 'kitchen':
     APP_PATH = 'kitchen';
-    return;
+    break;
   case 'bathroom':
     APP_PATH = 'bathroom';
-    return;
+    break;
   case 'living-room':
     APP_PATH = 'living-room';
-    return;
+    break;
   case 'bedroom':
     APP_PATH = 'bedroom';
-    return;
+    break;
   default:
     APP_PATH = '';
 }
