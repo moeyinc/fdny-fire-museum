@@ -14,6 +14,7 @@
       @click="pageTransition" />
     <span
       class="blink-text blinking"
+      @click="pageTransition"
       :style="{'font-size': blinkTextSize,
                 'top'     : blinkTextTop,
                 'left'    : blinkTextLeft

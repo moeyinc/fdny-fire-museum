@@ -1,5 +1,24 @@
 #!/usr/bin/env node
 
+// set initial URL path based on the given environment variable
+var APP_PATH;
+switch (process.env.FIREMUSEUM_APP_NAME) {
+  case 'kitchen':
+    APP_PATH = 'kitchen';
+    return;
+  case 'bathroom':
+    APP_PATH = 'bathroom';
+    return;
+  case 'living-room':
+    APP_PATH = 'living-room';
+    return;
+  case 'bedroom':
+    APP_PATH = 'bedroom';
+    return;
+  default:
+    APP_PATH = '';
+}
+
 /**
  * Module dependencies.
  */
@@ -113,7 +132,7 @@ electronApp.on('ready', function() {
     webContents.setLayoutZoomLevelLimits(0, 0);
   });
   mainWindow.setFullScreen(true);
-  mainWindow.loadURL('http://localhost:' + port);
+  mainWindow.loadURL('http://localhost:' + port + '/' + APP_PATH);
 
   mainWindow.on('closed', function() {
     mainWindow = null;
