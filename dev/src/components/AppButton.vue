@@ -2,26 +2,22 @@
  Vue Template
 ================================================== -->
 <template>
-  <div
+  <v-touch
     class="app-button-wrapper"
-    :style="{'float' : float}">
+    :style="{'float' : float}"
+    @tap="pageTransition">
     <img
       :src="getImageAssetFilePath(img)"
-      class="app-button"
-      @mousedown="toggle"
-      @mouseup="toggle"
-      @mouseleave="resetClick"
-      @click="pageTransition" />
+      class="app-button"/>
     <span
       class="blink-text blinking"
-      @click="pageTransition"
       :style="{'font-size': blinkTextSize,
                 'top'     : blinkTextTop,
                 'left'    : blinkTextLeft
               }">
       {{ blinkText }}
     </span>
-  </div>
+  </v-touch>
 </template>
 
 <!-- =================================================
@@ -37,8 +33,7 @@ export default {
     return {
       elev: 8,
       usualElev: 8,
-      raisedElev: 16,
-      isActive: false
+      raisedElev: 16
     }
   },
   props: {
@@ -73,16 +68,6 @@ export default {
     }
   },
   methods: {
-    // switch the active value to change the background color
-    toggle () {
-      if (this.clickable) {
-        this.isActive = !this.isActive
-      }
-    },
-    // reset the active value when leaving your mouse
-    resetClick () {
-      this.isActive = false
-    },
     // transit to a specified page
     pageTransition () {
       if (this.clickable) {

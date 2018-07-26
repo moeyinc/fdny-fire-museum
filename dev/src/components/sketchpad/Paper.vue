@@ -2,14 +2,14 @@
  Vue Template
 ================================================== -->
 <template>
-  <div
+  <v-touch
     id="sketchpad-paper"
     :style="{'width': width + 'px', 'height': height + 'px'}"
-    @mousedown="mouseDown"
-    @mouseup="mouseUp"
-    @mouseleave="mouseLeave">
+    @touchstart.native.prevent="mouseDown"
+    @touchend.native.prevent="mouseUp"
+    @touchcancel.native="mouseLeave">
 
-  </div>
+  </v-touch>
 </template>
 
 <!-- =================================================
@@ -77,7 +77,7 @@ export default {
     }
   },
   methods: {
-    mouseDown () {
+    mouseDown (e) {
       this.isMouseDownOnPaper = true
     },
     mouseUp () {

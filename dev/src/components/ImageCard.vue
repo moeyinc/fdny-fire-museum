@@ -2,14 +2,14 @@
  Vue Template
 ================================================== -->
 <template>
-  <div
+  <v-touch
     class="image-card-wrapper"
     :style="[{width: width, height: height, padding: padding},
              getBGColor]"
-    @mousedown="toggle"
-    @mouseup="toggle"
-    @mouseleave="resetClick"
-    @click="pageTransition">
+    @touchstart.native="toggle"
+    @touchend.native="toggle"
+    @touchcancel.native="resetClick"
+    @tap="pageTransition">
     <div
       class="top-image"
       :style="[setBGImage(getImageAssetFilePath(img)),
@@ -23,7 +23,7 @@
         <span v-if="text2"><br />{{text2}}</span>
       </p>
     </div>
-  </div>
+  </v-touch>
 </template>
 
 <!-- =================================================
@@ -99,14 +99,16 @@ export default {
         this.isActive = !this.isActive
       }
     },
-    // reset the active value when leaving your mouse
-    resetClick () {
-      this.isActive = false
-    },
     // transit to a specified page
     pageTransition () {
       if (this.clickable) {
         this.$router.push({ name: this.destination })
+      }
+    },
+    resetClick () {
+      console.log('reset click')
+      if (this.clickable) {
+        this.isActive = false
       }
     }
   }

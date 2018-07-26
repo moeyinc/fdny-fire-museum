@@ -5,7 +5,7 @@
     <div
       class="dot"
       :style="getDotStyle"
-      @click.self="openBalloon"
+      @click="openBalloon"
       >
     </div>
 </template>
@@ -54,7 +54,8 @@ export default {
     }
   },
   methods: {
-    openBalloon () {
+    openBalloon (e) {
+      console.log('open balloon from HazardDot', e)
       if (this.isActiveBalloon) {
         // if the balloon is already displayed, close it
         this.$emit('close-balloon')
