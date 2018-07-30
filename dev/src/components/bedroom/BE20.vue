@@ -15,6 +15,7 @@
         :hazards="hazards"
         :stage-width="1920"
         :stage-height="880"
+        :screen-height="1080"
         :close-balloon-trigger="0"
         @update-position="updatePosition"
         @found-hazard="foundHazard"

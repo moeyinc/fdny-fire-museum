@@ -56,9 +56,11 @@ export default {
   },
   methods: {
     openBalloon (id) {
+      // console.log('in Hazard, openBalloon()', id)
       this.$emit('open-balloon', id)
     },
     closeBalloon () {
+      // console.log('in Hazard, closeBalloon()')
       this.$emit('close-balloon')
     }
   }

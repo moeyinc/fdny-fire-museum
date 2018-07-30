@@ -36,7 +36,6 @@ export default {
   },
   methods: {
     changeColor () {
-      console.log('touch')
       this.clicked = !this.clicked
     },
     resetClick () {

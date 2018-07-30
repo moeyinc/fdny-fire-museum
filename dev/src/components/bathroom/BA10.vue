@@ -15,6 +15,7 @@
         :hazards="hazards"
         :stage-width="1080"
         :stage-height="1670"
+        :screen-height="1920"
         @update-position="updatePosition"
         @found-hazard="foundHazard"
       />

@@ -150,4 +150,11 @@ span.white {
   height: 1080px;*/
   overflow: hidden;
 }
+
+#gesture-swipe-left-icon svg {
+  filter: drop-shadow( 5px 2px 2px rgba(0, 0, 0, 0.2));
+}
+#gesture-swipe-right-icon svg {
+  filter: drop-shadow( 5px 2px 2px rgba(0, 0, 0, 0.2));
+}
 </style>
