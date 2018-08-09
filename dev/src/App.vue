@@ -2,9 +2,12 @@
  Vue Template
 ================================================== -->
 <template>
-  <div id="app" :style="getSize">
+  <v-touch
+    id="app"
+    :style="getSize"
+    @tap="resetTimer()">
     <router-view></router-view>
-  </div>
+  </v-touch>
 </template>
 
 <!-- =================================================
@@ -19,7 +22,8 @@ export default {
   data () {
     return {
       monitorWidth: 1920,
-      monitorHeight: 1080
+      monitorHeight: 1080,
+      screenTimer: null
     }
   },
   watch: {
@@ -30,6 +34,9 @@ export default {
       // resize the screen
       this.resize()
     }
+  },
+  created () {
+    this.resetTimer()
   },
   mounted () {
     // for the monitor in the bathroom with different size
@@ -73,6 +80,28 @@ export default {
       const el = document.getElementById('app')
       el.style.zoom = zoom
       // el.style.zoom = 1.0
+    },
+    resetTimer () {
+      console.log('resetting timer')
+      clearTimeout(this.screenTimer)
+      const timeout = 5 * 60 * 1000
+      this.screenTimer = setTimeout(this.goHomeScreen, timeout)
+    },
+    goHomeScreen () {
+      // get your destination
+      let destination = ''
+      if (this.$route.path.includes('kitchen')) {
+        destination = 'kitchen'
+      } else if (this.$route.path.includes('bathroom')) {
+        destination = 'bathroom'
+      } else if (this.$route.path.includes('living-room')) {
+        destination = 'living-room'
+      } else if (this.$route.path.includes('bedroom')) {
+        destination = 'bedroom'
+      }
+
+      // redirect
+      this.$router.push({ name: destination })
     }
   },
   beforeDestroy () {
@@ -156,5 +185,31 @@ span.white {
 }
 #gesture-swipe-right-icon svg {
   filter: drop-shadow( 5px 2px 2px rgba(0, 0, 0, 0.2));
+}
+
+/* .material-design-icon {
+  display: inline-flex;
+  align-self: center;
+  position: relative;
+  height: 1em;
+  width: 1em;
+} */
+
+.material-design-icon {
+  display: inline-flex;
+  align-self: center;
+  position: absolute;
+  height: 1em;
+  width: 1em;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.material-design-icon > .material-design-icon__svg {
+  height: 1em;
+  width: 1em;
+  fill: currentColor;
+  position: absolute;
+  /* bottom: -0.125em; */
 }
 </style>
