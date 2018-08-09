@@ -149,7 +149,7 @@ export default {
             discovered: true
           },
           balloon: {
-            description: 'When you reach a door, feel it with the back of your hand. If it is warm, there is fire on the other side. <br /><br />Leave the door closed and crawl to another exit.'
+            description: 'When you reach a door, feel it with the back of your hand. If it is warm, there is fire on the other side. Leave the door closed and crawl to another exit. <br /><br />Whenever you go through a door, close it behind you. This can stop fire from spreading and save lives!'
           }
         }
       ]
