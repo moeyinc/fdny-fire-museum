@@ -84,7 +84,7 @@ export default {
     resetTimer () {
       console.log('resetting timer')
       clearTimeout(this.screenTimer)
-      const timeout = 5 * 60 * 1000
+      const timeout = 2 * 60 * 1000
       this.screenTimer = setTimeout(this.goHomeScreen, timeout)
     },
     goHomeScreen () {
