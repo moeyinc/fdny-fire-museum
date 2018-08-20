@@ -4,12 +4,12 @@
 <template>
   <div
     id="sketchpad">
-    <v-touch
+    <div
       v-if="showMask"
       class="mask"
       :style="{width: width + 'px', height: height + 'px'}"
-      @tap="closeToolbarButtonOptions">
-    </v-touch>
+      @click="closeToolbarButtonOptions">
+    </div>
     <toolbar
       :width="toolbarWidth"
       :height="height"

@@ -2,12 +2,12 @@
  Vue Template
 ================================================== -->
 <template>
-    <v-touch
+    <div
       class="dot"
       :style="getDotStyle"
-      @tap="openBalloon"
+      @click.self="openBalloon"
       >
-    </v-touch>
+    </div>
 </template>
 
 <!-- =================================================
@@ -54,8 +54,7 @@ export default {
     }
   },
   methods: {
-    openBalloon (e) {
-      console.log('in HazardDot, openBalloon()', e)
+    openBalloon () {
       if (this.isActiveBalloon) {
         console.log('in HazardDot, there is an active balloon, so close it')
         // if the balloon is already displayed, close it

@@ -9,14 +9,13 @@
     <swipe-indicator right
       v-if="hasSpaceAtRight"
       :screen-height="screenHeight"/>
-    <v-touch
+    <div
       class="stage-image-container"
       :style="getBGImage"
-      @touchstart.native="startDragging($event)"
-      @touchend.native="stopDragging($event)"
-      @tap="seekHazard"
-      @touchmove.native="drag($event)"
-      @touchcancel.native="stopDragging($event)"
+      @mousedown="startDragging($event)"
+      @mouseup="[seekHazard($event), stopDragging($event)]"
+      @mousemove="drag($event)"
+      @mouseleave="stopDragging($event)"
       >
       <hazard
         v-for="(hazard, index) in hazards"
@@ -31,7 +30,7 @@
         @open-balloon="openBalloon"
         @close-balloon="closeBalloon"
       />
-    </v-touch>
+    </div>
   </div>
 </template>
 
@@ -115,9 +114,9 @@ export default {
       // console.log('in FindHazardsStage, startDragging()')
       if (this.activeBalloon < 0) {
         this.isDragging = true
-        this.startDraggingPosX = e.touches[0].screenX - this.stageImagePosX
+        this.startDraggingPosX = e.pageX - this.stageImagePosX
       }
-      this.startDraggingAbsPosX = e.touches[0].clientX
+      this.startDraggingAbsPosX = e.clientX
     },
     stopDragging (e) {
       // console.log('in FindHazardsStage, stopDragging()')
@@ -127,7 +126,7 @@ export default {
       // console.log('in FindHazardsStage, drag()')
       if (this.activeBalloon < 0) {
         if (this.isDragging) {
-          let newPos = e.touches[0].screenX - this.startDraggingPosX
+          let newPos = e.pageX - this.startDraggingPosX
 
           // if new position is beyond the edges
           const leftEdge = this.$el.offsetWidth - this.stageImageWidth
@@ -145,12 +144,14 @@ export default {
       }
     },
     seekHazard (e) {
-      // console.log('in FindHazardsStage, seekHazard()', e)
-      if (e.target.className !== 'stage-image-container') return
-      if (this.activeBalloon >= 0) {
-        // console.log('in FindHazardsStage, lets close active balloon first', this.activeBalloon)
-        e.srcEvent.stopPropagation()
-        // if there is a popup balloon displayed, close it
+      let draggedDistance = Math.abs(this.startDraggingAbsPosX - e.clientX)
+      if (draggedDistance > 10) {
+        console.log('you are dragging')
+        // when it's being dragged, don't try to find a hazard
+        return
+      } else if (this.activeBalloon >= 0) {
+        console.log('balloon is active')
+
         this.closeBalloon()
         return
       } else {
@@ -158,8 +159,8 @@ export default {
         // get mouse pos
         let zoom = document.getElementById('app').style.zoom
         let rect = this.$el.getBoundingClientRect()
-        let mouseX = e.center.x / zoom - rect.left
-        let mouseY = e.center.y / zoom - rect.top
+        let mouseX = e.pageX / zoom - rect.left
+        let mouseY = e.pageY / zoom - rect.top
 
         // console.log('rect left:', rect.left)
         // console.log('rect top:', rect.top)
