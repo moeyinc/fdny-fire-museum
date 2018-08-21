@@ -2,16 +2,16 @@
  Vue Template
 ================================================== -->
 <template>
-  <div
+  <v-touch
     class="button-wrapper"
     :style="getBGColorStyle"
-    @mousedown="changeColor"
-    @mouseup="changeColor"
-    @mouseleave="resetClick">
+    @touchstart.native="changeColor"
+    @touchend.native="changeColor"
+    @touchcancel.native="resetClick">
     <div class="button-container">
       <slot name="left-button-content"></slot>
     </div>
-  </div>
+  </v-touch>
 </template>
 
 <!-- =================================================

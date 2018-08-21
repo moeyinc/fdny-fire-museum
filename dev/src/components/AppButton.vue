@@ -2,10 +2,10 @@
  Vue Template
 ================================================== -->
 <template>
-  <div
+  <v-touch
     class="app-button-wrapper"
     :style="{'float' : float}"
-    @click="pageTransition">
+    @tap="pageTransition">
     <img
       :src="getImageAssetFilePath(img)"
       class="app-button"/>
@@ -17,7 +17,7 @@
               }">
       {{ blinkText }}
     </span>
-  </div>
+  </v-touch>
 </template>
 
 <!-- =================================================
