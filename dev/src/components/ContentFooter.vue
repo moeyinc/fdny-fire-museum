@@ -3,31 +3,31 @@
 ================================================== -->
 <template>
   <footer id="content-footer-wrapper" :style="{'background-color': bgColor}">
-    <v-touch
+    <div
       class="left-button"
       :style="getLeftButtonBGColor"
       v-if="hasLeftButton"
-      @touchstart.native="changeLeftColor"
-      @touchend.native="changeLeftColor"
-      @touchcancel.native="resetLeftClick"
-      @tap="$emit('left-clicked')">
+      @mousedown="changeLeftColor"
+      @mouseup="changeLeftColor"
+      @mouseleave="resetLeftClick"
+      @click="$emit('left-clicked')">
       <div class="button-container">
         <slot name="left-button-content"></slot>
       </div>
-    </v-touch>
-    <v-touch
+    </div>
+    <div
       class="right-button"
       :style="getRightButtonBGColor"
       v-if="hasRightButton"
-      @touchstart.native="changeRightColor"
-      @touchend.native="changeRightColor"
-      @touchcancel.native="resetRightClick"
-      @tap="$emit('right-clicked')"
+      @mousedown="changeRightColor"
+      @mouseup="changeRightColor"
+      @mouseleave="resetRightClick"
+      @click="$emit('right-clicked')"
       >
       <div class="button-container">
         <slot name="right-button-content"></slot>
       </div>
-    </v-touch>
+    </div>
   </footer>
 </template>
 

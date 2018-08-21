@@ -2,14 +2,14 @@
  Vue Template
 ================================================== -->
 <template>
-  <v-touch
+  <div
     class="image-card-wrapper"
     :style="[{width: width, height: height, padding: padding},
              getBGColor]"
-    @touchstart.native="toggle"
-    @touchend.native="toggle"
-    @touchcancel.native="resetClick"
-    @tap="pageTransition">
+     @mousedown="toggle"
+     @mouseup="toggle"
+     @mouseleave="resetClick"
+     @click="pageTransition">
     <div
       class="top-image"
       :style="[setBGImage(getImageAssetFilePath(img)),
@@ -23,7 +23,7 @@
         <span v-if="text2"><br />{{text2}}</span>
       </p>
     </div>
-  </v-touch>
+  </div>
 </template>
 
 <!-- =================================================

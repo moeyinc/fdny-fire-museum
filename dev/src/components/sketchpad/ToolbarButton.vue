@@ -2,16 +2,15 @@
  Vue Template
 ================================================== -->
 <template>
-  <v-touch
+  <div
     v-show="isSVGReady"
     class="button-container"
     :style="[getButtonStyle, getBGColor]"
-    @touchstart.native="toggle"
-    @touchend.native="toggle"
-    @touchcancel.native="resetClick"
-    @tap="buttonClicked">
-
-  </v-touch>
+    @mousedown="toggle"
+    @mouseup="toggle"
+    @mouseleave="resetClick"
+    @click="buttonClicked">
+  </div>
 </template>
 
 <!-- =================================================
