@@ -1,0 +1,11 @@
+{
+  "dest": "release-builds/",
+  "categories": [
+    "Education"
+  ],
+  "description": "Fire Museum Kiosk",
+  "maintainer": "moeyinc.com",
+  "lintianOverrides": [
+    "changelog-file-missing-in-native-package"
+  ]
+}
